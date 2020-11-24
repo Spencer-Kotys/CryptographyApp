@@ -1,0 +1,23 @@
+{
+  "name": "CryptographyApp",
+  "version": "1.0.0",
+  "description": "A rewritten version of the original Cryptography App written by Spencer Kotys Uses the Electron software framework",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spencer-Kotys/CryptographyApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spencer-Kotys/CryptographyApp/issues"
+  },
+  "homepage": "https://github.com/Spencer-Kotys/CryptographyApp#readme",
+  "devDependencies": {
+    "electron": "^11.0.3"
+  }
+}
