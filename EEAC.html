@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="./css/bootstrap.min.css">
 
   <title>Extended Euclidean Algorithm Calculator</title>
+
+  <!-- App script -->
+  <script src="script.js"></script>
+
 </head>
 <body>
   <!-- Page title -->
@@ -40,7 +44,7 @@
     </div>
     <!-- Go Button -->
     <div class="row align-items-center justify-content-center">
-      <button type="button" class="btn btn-outline-secondary" onclick="myFunction()">Go</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="eeac()">Go</button>
     </div>
   </div>
   <br>
@@ -110,81 +114,5 @@
       <a href="./index.html" class="btn btn-outline-secondary">Go Back</a>
     </div>
   </div>
-  <script>
-  function myFunction() {
-    a = []; //declaring array a
-    b = []; //declaring array b
-    x = [0,1]; //declaring array x
-    y = [1,0]; //declaring array y
-    //Having major problems with getting the variables, javascript stops working
-    var s = document.getElementById("A").value; //getting value from input box
-    //console.log(s);
-    //s = 304;
-    s1 = s;
-    var k = document.getElementById("B").value; //getting value from input box
-    //console.log(k);
-    //k = 150;
-    k1 = k;
-    work = " ";
-    //start of euclidian algorithm
-    while (k != 0) { //loops through until it gets k to zero
-      console.log(s + " = " + Math.floor(s/k) + " * " + k + " + " + s % k);
-      work = work.concat(s + " = " + Math.floor(s/k) + " * " + k + " + " + s % k + " -> ");
-      a.push(Math.floor(s/k)); //adds the floor of s / k to array a
-      b.push(s % k); //adds s % k to array b
-      [s,k] = [k,s%k]; //sets s = k and k = s % k
-    }
-    work = work.concat(s);
-    console.log("Work: " + work);
-    console.log("The GCD is " + s);
-    document.getElementById("GCD").innerHTML = s;
-    document.getElementById("Work").innerHTML = work;
-    //start of extended euclidian
-    i = b.indexOf(0); //finds index of 0 in array
-    console.log("x0 = 0");
-    console.log("y0 = 1");
-    console.log("x1 = 1");
-    console.log("y1 = 0");
-    workX = "x0 = 0 -> x1 = 1 -> ";
-    workY = "y0 = 1 -> y1 = 0 -> ";
-
-    for (c=0;c<i;c++) { //adds results of equations to array x and y
-      x.push(-a[c] * x[c+1] + x[c]); //multiplies array negative array a index by x plus 1 index plus x index
-      console.log("x" + (c + 2) + ": " + x[c+2] + " = " + (-a[c]) + " * " + x[c+1] + " + " + x[c]);
-      workX = workX.concat("x" + (c + 2) + ": " + x[c+2] + " = " + (-a[c]) + " * " + x[c+1] + " + " + x[c] + " -> ");
-      y.push(-a[c] * y[c+1] + y[c]); //same as above
-      console.log("y" + (c + 2) + ": " + y[c+2] + " = " + (-a[c]) + " * " + y[c+1] + " + " + y[c]);
-      workY = workY.concat("y" + (c + 2) + ": " + y[c+2] + " = " + (-a[c]) + " * " + y[c+1] + " + " + y[c] + " -> ");
-    }
-    workX = workX.concat(x[i+1]);
-    workY = workY.concat(y[i+1]);
-    console.log("X: " + x[i+1] + " Y: " + y[i+1]);
-    console.log("Work X:" + workX);
-    console.log("Work Y:" + workY);
-    document.getElementById("X").innerHTML = x[i+1];
-    document.getElementById("Y").innerHTML = y[i+1];
-    document.getElementById("Work X").innerHTML = workX;
-    document.getElementById("Work Y").innerHTML = workY;
-    console.log(k1 + " * " + x[i+1] + " + " + s1 + " * " + y[i+1] + " = " + s);
-    document.getElementById("Equation").innerHTML = k1 + " * " + x[i+1] + " + " + s1 + " * " + y[i+1] + " = " + s;
-    while (x[i+1] < 0) { //adds s1 to index of x plus 1 if it is less than zero
-      x[i+1] = x[i+1] + s1;
-    }
-    while (x[i+1] > s1) { //subtracts s1 from index of x plus 1 if it is greater than s1
-      x[i+1] = x[i+1] - s1;
-    }
-    while (y[i+1] < 0) { //adds k1 to index of y plus 1 if it is less than zero
-      y[i+1] = y[i+1] + k1;
-    }
-    while (y[i+1] > k1) { //subtracts k1 from index of y plus 1 if it is greater than k1
-      y[i+1] = y[i+1] - k1;
-    }
-    console.log("The multiplicative inverse of " + k1 + " mod " + s1 + " is " + x[i+1]);
-    console.log("The multiplicative inverse of " + s1 + " mod " + k1 + " is " + y[i+1]);
-    document.getElementById("Inverse B").innerHTML = "The multiplicative inverse of " + k1 + " mod " + s1 + " is " + x[i+1];
-    document.getElementById("Inverse A").innerHTML = "The multiplicative inverse of " + s1 + " mod " + k1 + " is " + y[i+1];
-    return;
-  }
-  </script>
 </body>
 </html>
