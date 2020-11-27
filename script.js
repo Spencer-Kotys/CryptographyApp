@@ -83,3 +83,23 @@ function eeac () {
   euclideanAlgorithm(a, b, s, k)
   extendedEulidean(a, b, x, y, s, k)
 }
+
+function ec () {
+  console.log('Test')
+  var a = document.getElementById('Prob').value // getting value
+  var b = a.split(',') // split input by commas
+  var c = []
+  var sum = 0
+  var work = ' '
+  for (var d = 0; d < b.length; d++) {
+    c.push(-b[d] * (Math.log(b[d]) / Math.log(2)))
+    console.log(-b[d] + '* log2(' + b[d] + ') + ')
+    work = work.concat(-b[d] + '* log2(' + b[d] + ') + ')
+    sum += c[d]
+  }
+  work = work.concat(' = ' + sum)
+  console.log(sum)
+  console.log(work)
+  document.getElementById('Entropy').innerHTML = sum
+  document.getElementById('Work').innerHTML = work
+}
