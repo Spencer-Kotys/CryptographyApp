@@ -8,7 +8,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="./css/bootstrap.min.css">
 
-  <title>Entropy Calculator</title>
+  <title>RSA</title>
 
   <!-- App script -->
   <script src="script.js"></script>
@@ -18,50 +18,53 @@
   <!-- Page title -->
   <div class="container">
     <div class="row align-items-center justify-content-center">
-      <h1>Oh the Entropy!</h1>
-    </div>
-    <div class="row align-items-center justify-content-center">
-      <p>Probabilities must be in decimal!</p>
-    </div>
-    <div class="row align-items-center justify-content-center">
-      <p>Seperate probabilities with commas.</p>
+      <h1>RSA</h1>
     </div>
   </div>
-  <!-- Input box -->
+  <!-- Input boxes -->
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Probabilities</span>
+          <span class="input-group-text" id="basic-addon1">Plain/Cypher Text</span>
         </div>
-        <input type="text" id="Prob" class="form-control" placeholder="Numbers" aria-describedby="basic-addon1">
+        <input type="text" id="Text" class="form-control" placeholder="Number" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Encryption/Decryption Key</span>
+        </div>
+        <input type="text" id="Key" class="form-control" placeholder="Number" aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">N</span>
+        </div>
+        <input type="text" id="N" class="form-control" placeholder="Number" aria-describedby="basic-addon1">
       </div>
     </div>
     <!-- Go button -->
     <div class="row align-items-center justify-content-center">
-      <button type="button" class="btn btn-outline-secondary" onclick="ec()">Go</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="rsa()">Go</button>
     </div>
   </div>
   <br>
   <!-- Output -->
   <div class="container">
     <div class="row align-items-center justify-content-center">
-      <h3>Entropy</h3>
+      <h3>Answer</h3>
     </div>
     <div class="row align-items-center justify-content-center">
-      <p id="Entropy"></p>
+      <p id="Answer"></p>
     </div>
-    <div class="row align-items-center justify-content-center">
-      <h3>Work</h3>
-    </div>
-    <div class="row align-items-center justify-content-center">
-      <p id="Work"></p>
-    </div>
-  </div>
   <!-- Clear and Go Back -->
   <div class = "container">
     <div class="row align-items-center justify-content-center">
-      <a href="./EC.html" class="btn btn-outline-secondary">Clear</a>
+      <a href="./RSA.html" class="btn btn-outline-secondary">Clear</a>
     </div>
     <div class="row align-items-center justify-content-center">
       <a href="./index.html" class="btn btn-outline-secondary">Go Back</a>

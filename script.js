@@ -103,3 +103,19 @@ function ec () {
   document.getElementById('Entropy').innerHTML = sum
   document.getElementById('Work').innerHTML = work
 }
+
+function me () {
+  console.log('ME')
+}
+
+function msr () {
+  console.log('MSR')
+}
+
+function ltd () {
+  console.log('LTD')
+}
+
+function rsa () {
+  console.log('RSA')
+}
