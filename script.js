@@ -118,4 +118,18 @@ function ltd () {
 
 function rsa () {
   console.log('RSA')
+  var a = document.getElementById('Text').value // getting value
+  console.log(a)
+  var b = document.getElementById('Key').value // getting value
+  console.log(b)
+  var c = document.getElementById('N').value // getting value
+  console.log(c)
+  var d = 1
+  for (var i = 0; i < b; i++) { // replaces large numbers from expenentiation with loop
+    d = (d * a) % c // multiplies then mods to keep numbers small
+  }
+  console.log(d)
+  var e = d % c
+  console.log(e)
+  document.getElementById('Answer').innerHTML = e
 }
