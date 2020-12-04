@@ -106,6 +106,65 @@ function ec () {
 
 function me () {
   console.log('ME')
+  var ae = []
+  var aj = []
+  var aa = []
+  var ai = []
+  var aaa = []
+  var x = document.getElementById('Base').value // getting value for Base
+  var a = document.getElementById('Ex').value // getting value for Ex
+  var n = document.getElementById('Mod').value // getting value for Mod
+  var b = a
+  var e = 1
+  var i = x ** e
+  var j = i % n
+  var work = ' '
+  console.log(x + '^' + e + ' = ' + j)
+  work = work.concat(x + '^' + e + ' = ' + j + '<br>')
+  ae.push(e)
+  aj.push(j)
+  e = 2
+  i = x ** e
+  j = i % n
+  console.log(x + '^' + e + ' = ' + j)
+  work = work.concat(x + '^' + e + ' = ' + j + '<br>')
+  ae.push(e)
+  aj.push(j)
+  e = 4
+  while (e < a) {
+    j = j ** 2
+    j = j % n
+    console.log(x + '^' + e + ' = ' + j)
+    work = work.concat(x + '^' + e + ' = ' + j + '<br>')
+    ae.push(e)
+    aj.push(j)
+    e = e * 2
+  }
+  var L = ae.length - 1
+  for (var c = L; c > -1; c--) {
+    var ans = a - ae[c]
+    if (ans >= 0) {
+      aa.push(ae[c])
+      ai.push(c)
+      a = a - ae[c]
+    }
+  }
+  L = ai.length
+  for (c = 0; c < L; c++) {
+    var d = ai[c]
+    aaa.push(aj[d])
+  }
+  var p = 1
+  for (i = 0; i < aaa.length; i++) {
+    p = (p * aaa[i]) % n
+  }
+  console.log(b + '= sum ' + aa)
+  work = work.concat(b + ' = sum ' + aa + '<br>')
+  console.log(x + '^' + b + ' = prod ' + aaa + ' = ' + p + ' mod ' + n)
+  work = work.concat(x + '^' + b + ' = prod ' + aaa + ' = ' + p + ' mod ' + n + '<br>')
+  var answer = x + '^' + b + ' = ' + p + ' mod ' + n
+  document.getElementById('Answer').innerHTML = answer
+  document.getElementById('Work').innerHTML = work
 }
 
 function msr () {
