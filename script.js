@@ -114,6 +114,46 @@ function msr () {
 
 function ltd () {
   console.log('LTD')
+  var a = document.getElementById('Base').value // getting value for Base
+  console.log(a)
+  var b = document.getElementById('Exponent').value // getting value for Exponent
+  console.log(b)
+  if (b < 1000) {
+    var l = 1
+    for (var i = 0; i < b; i++) { // replaces large numbers from expenentiation with loop
+      l = (l * a) % 1000 // multiplies then mods to keep numbers small
+    }
+    console.log(a + '^' + b + ' mod 1000 =' + l)
+    document.getElementById('Answer').innerHTML = l
+    var work = a + '^' + b + ' mod 1000 =' + l
+    document.getElementById('Work').innerHTML = work
+  } else {
+    var c = b.length // getting the length of the number
+    console.log(c)
+    var d = c - 2 // subtracting two off on the length
+    console.log(d)
+    var f = '4' // 4 for Totient
+    var g = '10' // 10 for Totient
+    for (i = 0; i < d; i++) { // Adding zeros for Totient
+      f = f.concat('0')
+      g = g.concat('0')
+    }
+    i = b % f // mod of the exponent
+    console.log(i)
+    var j = 1
+    for (var z = 0; z < i; z++) { // replaces large numbers from expenentiation with loop
+      j = (j * a) % 1000 // multiplies then mods to keep numbers small
+    }
+    console.log(j)
+    var k = Math.floor(b / f)
+    console.log(k)
+    console.log('Totient of ' + g + '=' + f)
+    console.log(a + '^' + b + '= (' + a + '^' + f + ')^' + k + '* (' + a + '^' + i + ')')
+    console.log(a + '^' + i + ' mod 1000 = ' + j)
+    document.getElementById('Answer').innerHTML = j
+    work = 'Totient of ' + g + '=' + f + '<br>' + a + '^' + b + '= (' + a + '^' + f + ')^' + k + '* (' + a + '^' + i + ')' + '<br>' + a + '^' + i + ' mod 1000 = ' + j
+    document.getElementById('Work').innerHTML = work
+  }
 }
 
 function rsa () {
