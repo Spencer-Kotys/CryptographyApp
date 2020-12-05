@@ -167,8 +167,75 @@ function me () {
   document.getElementById('Work').innerHTML = work
 }
 
+function prime (n, m) {
+  var e = (m + 1) / 4
+  var ce = e % 1
+  if (ce !== 0) {
+    console.log('There are no roots of ' + n + ' mod ' + m)
+  }
+  var x = (n ** e) % m
+  var xm = (x ** 2) % m
+  var b = (xm === n % m)
+  console.log('x^2 = ' + n + ' mod ' + m)
+  console.log('(' + m + ' + 1)/4 = ' + e)
+  console.log('x = ' + n + '^' + e + ' = ' + x + ' mod ' + m)
+  console.log(x + '^2 = ' + n + ' mod ' + m + b)
+  console.log('x = +-' + x + ' mod ' + m)
+  return { x, m }
+}
+
+function findMinX (num, rem, k) {
+  var x = 1
+  while (true) {
+    var j = 0
+    while (j < k) {
+      if (x % num[j] !== rem[j]) {
+        break
+      }
+      j++
+    }
+    if (j === k) {
+      return x
+    }
+    x++
+  }
+}
+function composite (n, m) {
+  var n1 = []
+  var m1 = []
+  var mod = []
+  var rem = []
+  console.log('x^2 = ' + n + ' mod ' + m)
+  for (var c = 2; c < m; c++) {
+    var f = m % c
+    if (f === 0) {
+      m1.push(c)
+    }
+  }
+  for (c = 0; c < m1.length; c++) {
+    var i = n % m1[c]
+    n1.push(i)
+  }
+  for (c = 0; c < n1.length; c++) {
+    console.log('x^2 = ' + n1[c] + ' mod ' + m1[c])
+    var { a, b } = prime(n1[c], m1[c])
+    rem.push(a)
+    mod.push(b)
+  }
+  var k = mod.length
+  console.log('Use Chinese remander Theorem four times')
+  var x = findMinX(mod, rem2, k)
+  i = -rem[0] % mod[0]
+  var rem2 = [i, rem[1]]
+  var x1 = findMinX(mod, rem2, k)
+  console.log('x = +-' + x + ', +-' + x1 + ' mod ' + m)
+}
+
 function msr () {
   console.log('MSR')
+  var n = document.getElementById('Base').value
+  var m = document.getElementById('Mod').value
+  composite(n, m)
 }
 
 function ltd () {
