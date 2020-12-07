@@ -1,5 +1,6 @@
 function euclideanAlgorithm (a, b, s, k) {
   var work = ' '
+  var exit = 0 // exit variable
   // start of euclidian algorithm
   while (k !== 0) { // loops through until it gets k to zero
     console.log(s + ' = ' + Math.floor(s / k) + ' * ' + k + ' + ' + s % k)
@@ -9,6 +10,13 @@ function euclideanAlgorithm (a, b, s, k) {
     var st = k // set temporary s = k
     k = s % k // sets k = s mod k
     s = st // sets s = temp s
+    exit++ // Add one to exit variable
+    if (exit > 1000) { // exit loop after 1000 loops
+      console.log('Error')
+      document.getElementById('GCD').innerHTML = 'Error'
+      document.getElementById('Work').innerHTML = 'Error'
+      return
+    }
   }
   work = work.concat(s)
   console.log('Work: ' + work)
@@ -49,21 +57,50 @@ function extendedEulidean (a, b, x, y, s, k) {
   console.log(y[i + 1])
   var h = x[i + 1]
   var l = y[i + 1]
+  var exit = 0 // exit variable
   while (h < 0) { // adds s to index of x plus 1 if it is less than zero
     h = +h + +s // The plus ensures that the variable is treated as an int
     console.log(h)
+    exit++ // increase exit variable
+    if (exit > 1000) { // After 1000 repeats exit
+      console.log('Error')
+      document.getElementById('Inverse B').innerHTML = 'Error'
+      document.getElementById('Inverse A').innerHTML = 'Error'
+      return
+    }
   }
   while (h > s) { // subtracts s from index of x plus 1 if it is greater than s
     h = +h - +s
     console.log(h)
+    exit++ // increase exit variable
+    if (exit > 1000) { // After 1000 repeats exit
+      console.log('Error')
+      document.getElementById('Inverse B').innerHTML = 'Error'
+      document.getElementById('Inverse A').innerHTML = 'Error'
+      return
+    }
   }
   while (l < 0) { // adds k to index of y plus 1 if it is less than zero
     l = +l + +k
     console.log(l)
+    exit++ // increase exit variable
+    if (exit > 1000) { // After 1000 repeats exit
+      console.log('Error')
+      document.getElementById('Inverse B').innerHTML = 'Error'
+      document.getElementById('Inverse A').innerHTML = 'Error'
+      return
+    }
   }
   while (l > k) { // subtracts k from index of y plus 1 if it is greater than k
     l = +l - +k
     console.log(l)
+    exit++ // increase exit variable
+    if (exit > 1000) { // After 1000 repeats exit
+      console.log('Error')
+      document.getElementById('Inverse B').innerHTML = 'Error'
+      document.getElementById('Inverse A').innerHTML = 'Error'
+      return
+    }
   }
   console.log('The multiplicative inverse of ' + k + ' mod ' + s + ' is ' + h)
   console.log('The multiplicative inverse of ' + s + ' mod ' + k + ' is ' + l)
@@ -80,6 +117,11 @@ function eeac () {
   console.log(s)
   var k = document.getElementById('B').value // getting value from input box
   console.log(k)
+  if ((isNaN(s) || s === '') || (isNaN(k) || k === '')) { // checks is entry is blank or not a number
+    console.log('Please enter a number')
+    window.alert('Please enter a number')
+    return
+  }
   euclideanAlgorithm(a, b, s, k)
   extendedEulidean(a, b, x, y, s, k)
 }
@@ -91,6 +133,18 @@ function ec () {
   var c = []
   var sum = 0
   var work = ' '
+  for (var ch = 0; ch < b.length; ch++) {
+    if (b[ch] > 1 || b[ch] < 0) { // checks if each entry is a decimal
+      console.log('All enteries must be decimal')
+      window.alert('All enteries must be decimal')
+      return
+    }
+    if (isNaN(b[ch]) || b[ch] === '') { // checks is each entry is a number and not blank
+      console.log('Please enter a number')
+      window.alert('Please enter a number')
+      return
+    }
+  }
   for (var d = 0; d < b.length; d++) {
     c.push(-b[d] * (Math.log(b[d]) / Math.log(2)))
     console.log(-b[d] + '* log2(' + b[d] + ') + ')
@@ -114,6 +168,11 @@ function me () {
   var x = document.getElementById('Base').value // getting value for Base
   var a = document.getElementById('Ex').value // getting value for Ex
   var n = document.getElementById('Mod').value // getting value for Mod
+  if ((isNaN(x) || x === '') || (isNaN(a) || a === '') || (isNaN(n) || n === '')) { // checks is entry is blank or not a number
+    console.log('Please enter a number')
+    window.alert('Please enter a number')
+    return
+  }
   var b = a
   var e = 1
   var i = x ** e
@@ -244,6 +303,11 @@ function ltd () {
   console.log(a)
   var b = document.getElementById('Exponent').value // getting value for Exponent
   console.log(b)
+  if ((isNaN(a) || a === '') || (isNaN(b) || b === '')) { // checks is entry is blank or not a number
+    console.log('Please enter a number')
+    window.alert('Please enter a number')
+    return
+  }
   if (b < 1000) {
     var l = 1
     for (var i = 0; i < b; i++) { // replaces large numbers from expenentiation with loop
@@ -290,6 +354,11 @@ function rsa () {
   console.log(b)
   var c = document.getElementById('N').value // getting value
   console.log(c)
+  if ((isNaN(a) || a === '') || (isNaN(b) || b === '') || (isNaN(c) || c === '')) { // checks is entry is blank or not a number
+    console.log('Please enter a number')
+    window.alert('Please enter a number')
+    return
+  }
   var d = 1
   for (var i = 0; i < b; i++) { // replaces large numbers from expenentiation with loop
     d = (d * a) % c // multiplies then mods to keep numbers small
