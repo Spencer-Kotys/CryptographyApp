@@ -1,3 +1,7 @@
+function modf (n, m) {
+  return ((n % m) + m) % m
+}
+
 function euclideanAlgorithm (a, b, s, k) {
   var work = ' '
   var exit = 0 // exit variable
@@ -227,28 +231,36 @@ function me () {
 }
 
 function prime (n, m) {
+  var wp = ' '
   var e = (m + 1) / 4
-  var ce = e % 1
+  var ce = modf(e, 1)
   if (ce !== 0) {
     console.log('There are no roots of ' + n + ' mod ' + m)
+    wp = wp.concat('There are no roots of ' + n + ' mod ' + m + '<br>')
   }
-  var x = (n ** e) % m
-  var xm = (x ** 2) % m
-  var b = (xm === n % m)
+  var x = modf((n ** e), m)
+  var xm = modf((x ** 2), m)
+  var b = (xm === modf(n, m))
   console.log('x^2 = ' + n + ' mod ' + m)
+  wp = wp.concat('x^2 = ' + n + ' mod ' + m + '<br>')
   console.log('(' + m + ' + 1)/4 = ' + e)
+  wp = wp.concat('(' + m + ' + 1)/4 = ' + e + '<br>')
   console.log('x = ' + n + '^' + e + ' = ' + x + ' mod ' + m)
-  console.log(x + '^2 = ' + n + ' mod ' + m + b)
+  wp = wp.concat('x = ' + n + '^' + e + ' = ' + x + ' mod ' + m + '<br>')
+  console.log(x + '^2 = ' + n + ' mod ' + m + ' ' + b)
+  wp = wp.concat(x + '^2 = ' + n + ' mod ' + m + ' ' + b + '<br>')
   console.log('x = +-' + x + ' mod ' + m)
-  return { x, m }
+  wp = wp.concat('x = +-' + x + ' mod ' + m + '<br>')
+  return [x, m, wp]
 }
 
 function findMinX (num, rem, k) {
   var x = 1
+  var exit = 0
   while (true) {
     var j = 0
     while (j < k) {
-      if (x % num[j] !== rem[j]) {
+      if (modf(x, num[j]) !== rem[j]) {
         break
       }
       j++
@@ -257,6 +269,13 @@ function findMinX (num, rem, k) {
       return x
     }
     x++
+    exit++ // Add one to exit variable
+    if (exit > 1000) { // exit loop after 1000 loops
+      console.log('Error')
+      document.getElementById('Answer').innerHTML = 'Error'
+      document.getElementById('Work').innerHTML = 'Error'
+      return
+    }
   }
 }
 function composite (n, m) {
@@ -264,30 +283,39 @@ function composite (n, m) {
   var m1 = []
   var mod = []
   var rem = []
+  var work = ' '
   console.log('x^2 = ' + n + ' mod ' + m)
+  work = work.concat('x^2 = ' + n + ' mod ' + m + '<br>')
   for (var c = 2; c < m; c++) {
-    var f = m % c
+    var f = modf(m, c)
     if (f === 0) {
       m1.push(c)
     }
   }
   for (c = 0; c < m1.length; c++) {
-    var i = n % m1[c]
+    var i = modf(n, m1[c])
     n1.push(i)
   }
   for (c = 0; c < n1.length; c++) {
     console.log('x^2 = ' + n1[c] + ' mod ' + m1[c])
-    var { a, b } = prime(n1[c], m1[c])
+    work = work.concat('x^2 = ' + n1[c] + ' mod ' + m1[c] + '<br>')
+    var [a, b, wp] = prime(n1[c], m1[c])
+    work = work.concat(wp)
     rem.push(a)
     mod.push(b)
   }
   var k = mod.length
   console.log('Use Chinese remander Theorem four times')
-  var x = findMinX(mod, rem2, k)
-  i = -rem[0] % mod[0]
+  work = work.concat('Use Chinese remander Theorem four times' + '<br>')
+  var x = findMinX(mod, rem, k)
+  i = modf(-rem[0], mod[0])
   var rem2 = [i, rem[1]]
   var x1 = findMinX(mod, rem2, k)
   console.log('x = +-' + x + ', +-' + x1 + ' mod ' + m)
+  work = work.concat('x = +-' + x + ', +-' + x1 + ' mod ' + m)
+  var answer = 'x = +-' + x + ', +-' + x1 + ' mod ' + m
+  document.getElementById('Answer').innerHTML = answer
+  document.getElementById('Work').innerHTML = work
 }
 
 function msr () {
