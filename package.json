@@ -12,7 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/Spencer-Kotys/CryptographyApp.git"
   },
-  "keywords": "[Cryptography]",
+  "keywords": [
+    "[Cryptography]"
+  ],
   "author": "Spencer Kotys",
   "license": "MIT",
   "bugs": {
@@ -25,14 +27,17 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "^11.0.3"
+    "electron": "^11.1.1"
   },
   "dependencies": {
+    "@electron-forge/maker-appx": "^6.0.0-beta.54",
     "electron-squirrel-startup": "^1.0.0"
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./icons/win/icon.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-zip"
@@ -45,6 +50,20 @@
               "homepage": "https://github.com/Spencer-Kotys/CryptographyApp",
               "icon": "./icons/png/1024x1024.png"
             }
+          }
+        },
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "authors": "Spencer Kotys"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-appx",
+          "config": {
+            "publisher": "CN=8E3F6DE8-B958-4D89-BF5B-F22B3E75FF0E",
+            "packageDisplayName": "The Cryptography App",
+            "packageDescription": "An app to solve cryptography problems"
           }
         }
       ]
